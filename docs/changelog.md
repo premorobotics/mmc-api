@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - 2026-10-07
+### Changed
+- **BREAKING:** Release command  
+
+Removed:
+```
+mmc.command.Request.release
+```
+Use instead:
+```
+mmc.command.Request.servo_off
+mmc.command.Request.servo_on
+```
+Release control of a carrier by turning the servo off and re-enable by turning the servo on. 
+
 ## [3.1.0] - 2026-09-28
 ### Changed
 - All velocity and acceleration percentage values are in `uint32`.
