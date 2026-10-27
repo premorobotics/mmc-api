@@ -361,11 +361,11 @@ This section demonstrates how to construct and encode a request for transmission
         request.command.pull.location = 500  
         ```
 
-#### [Release Carrier](protocol-documentation.md#requestrelease)
+#### [ServoOff](protocol-documentation.md#requestservooff)
 !!! info
-    Release control of carriers on a specified driver, allowing these carriers to be moved manually or by external systems.
+    Release control of carriers on specified axes, allowing these carriers to be moved manually or by external systems.
 !!! example
-    Release control of carriers on driver 1, line 1.
+    Release control of carriers on axis 3, line 1.
     === "zig"
         ``` zig
         const api = @import("mmc-api");
@@ -375,12 +375,9 @@ This section demonstrates how to construct and encode a request for transmission
             .body = .{
                 .command = .{
                     .body = .{
-                        .release = .{
+                        .servo_off = .{
                             .line = 1,
-                            .drivers = .{
-                                .start = 1,
-                                .end = 1,
-                            },
+                            .target = .{.axis = 3},
                         },
                     },
                 },
@@ -393,9 +390,8 @@ This section demonstrates how to construct and encode a request for transmission
         
         # Create a request
         request = mmc.Request()
-        request.command.release.line = 1
-        request.command.release.drivers.start = 1
-        request.command.release.drivers.end = 1
+        request.command.servo_off.line = 1
+        request.command.servo_off.axis = 3
         ```
 
 #### [Calibrate Line](protocol-documentation.md#requestcalibrate)
